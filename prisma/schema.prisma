@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Company {
+  id                    String   @id @default(cuid())
+  slug                  String   @unique
+  name                  String
+  description           String
+  website               String
+  logoUrl               String?
+  stage                 String
+  category              String
+  employeeCount         String
+  founded               Int?
+  growth_score          Float    @default(0)
+  data_confidence_score Float    @default(0)
+  last_scraped_at       DateTime @default(now())
+  trending_score        Float    @default(0)
+  isClaimed             Boolean  @default(false)
+  investments           Investment[]
+  createdAt             DateTime @default(now())
+}
+
+model Investor {
+  id             String       @id @default(cuid())
+  slug           String       @unique
+  name           String
+  description    String
+  logoUrl        String?
+  location       String
+  founded        Int?
+  type           String
+  avg_check_size String?
+  fund_number    Int?
+  investments    Investment[]
+  createdAt      DateTime     @default(now())
+}
+
+model Investment {
+  id         String   @id @default(cuid())
+  company    Company  @relation(fields: [companyId], references: [id])
+  companyId  String
+  investor   Investor @relation(fields: [investorId], references: [id])
+  investorId String
+  stage      String
+  amount     String?
+  date       DateTime
+  isLead     Boolean  @default(false)
+}
+
+model Job {
+  id          String   @id @default(cuid())
+  title       String
+  type        String
+  salary      String?
+  location    String
+  remote      Boolean  @default(false)
+  company     String
+  companyLogo String?
+  category    String
+  postedAt    DateTime @default(now())
+  applyUrl    String
+}
+
+model FeedItem {
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  body      String
+  entityId  String
+  createdAt DateTime @default(now())
+  score     Float    @default(0)
+}
