@@ -52,7 +52,7 @@ function CompanyLogo({ name, size = 40 }: { name: string; size?: number }) {
   if (!domain || err) {
     return (
       <div 
-  style={{ width: size, height: size, background: bgColors[name] || '#6B7280', bo... }}
+  style={{ width: size, height: size, background: bgColors[name] || '#6B7280', borderRadius: 8}}
   className="flex items-center justify-center text-white font-bold shrink-0"
 >
   <span style={{ fontSize: size * 0.3 }}>{name.slice(0,2).toUpperCase()}</span>
