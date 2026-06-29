@@ -51,11 +51,12 @@ function CompanyLogo({ name, size = 40 }: { name: string; size?: number }) {
   const domain = domains[name]
   if (!domain || err) {
     return (
-      <div style={{ width: size, height: size, background: bgColors[name] || '#6B7280', borderRadius: 10 }}
-        className="flex items-center justify-center text-white font-bold shrink-0"
-        style2={{ fontSize: size * 0.3 }}>
-        <span style={{ fontSize: size * 0.3 }}>{name.slice(0,2).toUpperCase()}</span>
-      </div>
+      <div 
+  style={{ width: size, height: size, background: bgColors[name] || '#6B7280', bo... }}
+  className="flex items-center justify-center text-white font-bold shrink-0"
+>
+  <span style={{ fontSize: size * 0.3 }}>{name.slice(0,2).toUpperCase()}</span>
+</div>
     )
   }
   return (
